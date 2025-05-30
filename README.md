@@ -36,9 +36,19 @@ cd MELBA_main
 python MixOASIS3D_GDN.ipynb
 
 
-## 🔹Qurick Review of Code logic
+## 🔬Quick Review of Code Logic
 
-1. Put different paparmeter setting in MELBA_configs
-2. The architecture of the main model, U-Net shape backbone is in the file: /GDN/lvdm/modules/modules2D3D/unet.py
-3. The architecture of the main model, Neural Operator is in the file: /GDN/lvdm/modules/modules2D3D/nop.py
-4. For the overflow of the whole algorithm, it's managed with PytorchLightning and the related function are in file: /GDN/lvdm/modules/modules2D3D/MELBAgdnAlter.py
+**🔹1. Parameter Settings:**
+Different parameter configurations are defined in the MELBA_configs file.
+
+**🔹2. Model Architecture – U-Net Backbone:**
+The architecture of the main model using the U-Net shape backbone is implemented in:
+/GDN/lvdm/modules/modules2D3D/unet.py
+
+**🔹3. Model Architecture – Neural Operator:**
+The architecture of the Neural Operator component is defined in:
+/GDN/lvdm/modules/modules2D3D/nop.py
+
+**🔹4. Algorithm Workflow:**
+The overall workflow of the algorithm is managed using PyTorch Lightning. The relevant functions are located in:
+/GDN/lvdm/modules/modules2D3D/MELBAgdnAlter.py
