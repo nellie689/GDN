@@ -1,3 +1,3 @@
 # GDN
 
-I will upload it by this Friday, May 30, 2025. (Sorry, currently traveling for IPMI2025)
+Learning Geodesics of Geometric Shape Deformations From Images. (Under review of Journal MELBA)
