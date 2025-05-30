@@ -39,16 +39,13 @@ python MixOASIS3D_GDN.ipynb
 ## 🔬Quick Review of Code Logic
 
 **🔹1. Parameter Settings:**
-Different parameter configurations are defined in the MELBA_configs file.
+Different parameter configurations are defined in: the MELBA_configs directory.
 
 **🔹2. Model Architecture – U-Net Backbone:**
-The architecture of the main model using the U-Net shape backbone is implemented in:
-/GDN/lvdm/modules/modules2D3D/unet.py
+The architecture of the main model using the U-Net shape backbone is implemented in: /GDN/lvdm/modules/modules2D3D/unet.py
 
 **🔹3. Model Architecture – Neural Operator:**
-The architecture of the Neural Operator component is defined in:
-/GDN/lvdm/modules/modules2D3D/nop.py
+The architecture of the Neural Operator component is defined in: /GDN/lvdm/modules/modules2D3D/nop.py
 
 **🔹4. Algorithm Workflow:**
-The overall workflow of the algorithm is managed using PyTorch Lightning. The relevant functions are located in:
-/GDN/lvdm/modules/modules2D3D/MELBAgdnAlter.py
+The overall workflow of the algorithm is managed using PyTorch Lightning. The relevant functions are located in: /GDN/lvdm/modules/modules2D3D/MELBAgdnAlter.py
