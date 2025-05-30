@@ -27,12 +27,14 @@ Below is a **QuickStart guide** on how to train and test.
 **Train**, run:
 
 cd MELBA_main
+
 python MixOASIS3D.py
 
 
 **Test**, run:
 
 cd MELBA_main
+
 python MixOASIS3D_GDN.ipynb
 
 
