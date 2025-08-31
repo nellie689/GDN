@@ -1,0 +1,140 @@
+model:
+  pretrained_checkpoint: /GDN/checkpoints/MixedOasis_Layer3/W0.5-epoch=579-step=5220.ckpt
+
+  base_learning_rate: 1.0e-05
+  scale_lr: False
+  target: lvdm.modules.modules2D3D.MELBAgdnAlter.NN
+  
+  params:
+    inshape: [128, 128, 128]
+    alter_train_epoches: [100,2000]
+    
+  
+    #3D
+    gamma: 1.0
+    alpha: 1.0
+    weight_mse: 0.5
+    weight_reg: 0.15
+
+    # weight_sigma: 0.01
+    weight_sigma: 0.03
+
+
+    unet_lr: 0.0005
+    nop_lr: 0.0005
+    ReparametrizeVectorField: False
+    PredictMomnetum: False
+    
+    
+    unet_config:
+      target: lvdm.modules.modules2D3D.unet.unet
+      params:
+        ndims: 3
+        inshape: [128, 128, 128]  #img_size
+        nb_features: [[8, 16, 16, 8], [8, 16, 16, 16, 8]]
+        infeats: 2   #input channels
+        
+    nop_config:
+      target: lvdm.modules.modules2D3D.nop.nop3dsimple
+      params: 
+        ModesFno: 4
+        WidthFno: 8
+        TSteps: 5
+        layers: 3
+  
+    reg_config: 
+      target: lvdm.metrics.regmetrics.MVMList
+      params:
+        ndims: 3
+    
+    nop_loss_config:
+      target: lvdm.metrics.regmetrics.LpLossMetricList
+      params:
+        W_Rel: 0.5
+        W_Mse: 0.5
+
+
+
+        
+
+
+data:
+  target: lvdm.data.2025data.DataModuleFromConfig
+  params:
+    batch_size: 6
+    num_workers: 6
+    
+    train:
+      target: lvdm.data.2025data_modules.MixedOasis
+      params:
+        path_OASIS1D: "/home/nellie/data/OASIS1_128/trainlist_dw.txt"
+        path_OASIS3D: "/home/nellie/data/OASIS3-128/trainlist_dw.txt"
+        split: "train"
+        cur_img_size: 128
+        img_size: 128
+        pairs_per_epoch: 100
+
+    valid:
+      target: lvdm.data.2025data_modules.MixedOasis
+      params:
+        path_OASIS1D: "/home/nellie/data/OASIS1_128/validlist_dw2.txt"
+        path_OASIS3D: "/home/nellie/data/OASIS3-128/validlist_dw2.txt"
+        split: "valid"
+        cur_img_size: 128
+        img_size: 128
+        pairs_per_epoch: 16
+
+
+    test:
+      target: lvdm.data.2025data_modules.Oasis1d_LDDMM_Optimize
+      params:
+        path: "/home/nellie/data/OASIS1_128/test_valid_list_dw2.txt"
+        split: "test"
+        idxpath: "/home/nellie/code/cvpr/Project/DynamiCrafter/configs/2025training_oasis1d_v4.0_LDDMM_numerical_solver/test.json"
+        cur_img_size: 128
+        img_size: 128
+        pairs_per_epoch: 59
+        templateIDX: 10
+
+
+
+
+
+lightning:
+  precision: 32
+  strategy: dp
+  trainer:
+    benchmark: True
+    accumulate_grad_batches: 2
+    max_epochs: 10000
+    min_epochs: 500
+    # logger
+    log_every_n_steps: 50
+    # val
+    check_val_every_n_epoch: 2
+    
+
+  callbacks:
+    model_checkpoint:
+      target: pytorch_lightning.callbacks.ModelCheckpoint
+      params:
+        every_n_epochs: 1 #1000
+        filename: "{epoch}-{step}"
+        save_weights_only: True
+    metrics_val_loss_checkpoint:
+      target: pytorch_lightning.callbacks.ModelCheckpoint
+      params:
+        monitor: "val_loss"            # 监控的 metric
+        mode: "min"                    # 保存最小值
+        filename: "{epoch}-{val_loss:.4f}"
+        save_top_k: 1                  # 只保留最优的检查点
+        save_weights_only: True         # 只保存权重
+    metrics_mse_loss_checkpoint:
+      target: pytorch_lightning.callbacks.ModelCheckpoint
+      params:
+        monitor: "val_mse"            # 监控的 metric
+        mode: "min"                  # 保存最小值
+        filename: "{epoch}-{val_mse:.4f}"
+        save_top_k: 1                  # 只保留最优的检查点
+        save_weights_only: True         # 只保存权重
+
