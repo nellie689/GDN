@@ -7,12 +7,14 @@ The updated version will be released as soon as possible.
 
 ## ⚖️ Disclaimer
 This code is only for research purpose and non-commercial use only, and we request you to cite our research paper if you use it:  
+```bibtex
 @article{wu2024learning,
   title={Learning Geodesics of Geometric Shape Deformations From Images},
   author={Wu, Nian and Zhang, Miaomiao},
   journal={arXiv preprint arXiv:2410.18797},
   year={2024}
 }
+
 
 ## 📌 Setup
 
