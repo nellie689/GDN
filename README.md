@@ -1,6 +1,9 @@
 ## 📜 Paper
 
-Learning Geodesics of Geometric Shape Deformations From Images. (Accpted by Journal Machine Learning for Biomedical Imaging (MELBA), pre-printed paper link: https://arxiv.org/pdf/2410.18797, the new version will be updated as soon as possible.)
+**Accepted by the journal *Machine Learning for Biomedical Imaging (MELBA)*.**  
+Preprint available at: [arXiv:2410.18797](https://arxiv.org/pdf/2410.18797).  
+The updated version will be released as soon as possible.
+
 
 ## ⚖️ Disclaimer
 This code is only for research purpose and non-commercial use only, and we request you to cite our research paper if you use it:  
