@@ -2,7 +2,7 @@
 
 Learning Geodesics of Geometric Shape Deformations From Images. (Accpted by Journal Machine Learning for Biomedical Imaging (MELBA), pre-printed paper link: https://arxiv.org/pdf/2410.18797, the new version will be updated as soon as possible.)
 
-## ⚠️ Disclaimer
+## ⚖️ Disclaimer
 This code is only for research purpose and non-commercial use only, and we request you to cite our research paper if you use it:  
 @article{wu2024learning,
   title={Learning Geodesics of Geometric Shape Deformations From Images},
@@ -24,7 +24,7 @@ The main dependencies are listed below, the other packages can be easily install
 * LagoMorph
 * pytorch_lightning
 
-Tips:
+ℹ️ Tips:
 LagoMorph contains the core implementation for solving the geodesic shooting equation (i.e., the EPDiff equation) under the LDDMM framework.
 The code repository is available at: https://github.com/jacobhinkle/lagomorph
 
